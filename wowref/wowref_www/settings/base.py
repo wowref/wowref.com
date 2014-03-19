@@ -16,6 +16,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
 )
 WOWREF_APPS = (
+    'wotlk',
     'wotlk.dbc',
 )
 
@@ -59,3 +60,4 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
+DATABASE_ROUTERS = ['wotlk.routers.Router']

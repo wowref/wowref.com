@@ -48,13 +48,13 @@ class ItemClassTests(TestCase):
 class SpellFormattedDescriptionTests(TestCase):
     def test_amplitude(self):
         """Tests the $o[1,2,3] formatter."""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(29838),  # second wind rank 2
             "Whenever you are struck by a Stun or Immobilize effect you will generate 20 rage "
             "and 10% of your total health over 10 seconds."
         )
 
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(29834),  # second wind rank 1
             "Whenever you are struck by a Stun or Immobilize effect you will generate 10 rage "
             "and 5% of your total health over 10 seconds."
@@ -62,19 +62,19 @@ class SpellFormattedDescriptionTests(TestCase):
 
     def test_false_conditional(self):
         """Tests the default false conditioner $?(cond)[true][false]"""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(34861),
             "Heals up to 5 friendly party or raid members within 15 yards of the target for 343 to 379."
         )
 
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(31687),
             "Summon a Water Elemental to fight for the caster for 45 seconds."
         )
 
     def test_eval_rounding(self):
         """Tests the evaluator rounding ${$m2/1000}.1"""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(31683),
             "Increases the damage of your Frostbolt spell by an amount "
             "equal to 10% of your spell power and reduces the cast time by 0.2 sec."
@@ -82,14 +82,14 @@ class SpellFormattedDescriptionTests(TestCase):
 
     def test_proc_chance_duration_and_radius(self):
         """Tests $h, $a, $d"""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(54787),
             "Gives your Ice Barrier spell a 100% chance to freeze all enemies within 10 "
             "yds for 8 seconds when it is destroyed."
         )
 
     def test_pluralizer_re(self):
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(12571),
             "Increases the duration of your Chill effects by 3 secs, reduces the target's speed by an additional 10%, "
             "and reduces the target's healing received by 20%."
@@ -97,7 +97,7 @@ class SpellFormattedDescriptionTests(TestCase):
 
     def test_max_targets(self):
         """Tests $i"""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(53385),
             "An instant weapon attack that causes 110% of weapon damage to up to 4 enemies within 8 yards.  "
             "The Divine Storm heals up to 3 party or raid members totaling 25% of the damage caused."
@@ -105,20 +105,20 @@ class SpellFormattedDescriptionTests(TestCase):
 
     def test_chain_targets(self):
         """Tests $x"""
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(53595),
             "Hammer the current target and up to 3 additional nearby targets, causing 4 times your main hand "
             "damage per second as Holy damage."
         )
 
     def test_m(self):
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(55684),
             "Reduces the cooldown of your Fade spell by 9 sec."
         )
 
     def test_a_noindex(self):
-        self.assertEquals(
+        self.assertEqual(
             Spell.get_formatted_description(48505),
             "You summon a flurry of stars from the sky on all targets within 30 yards of the caster, each dealing 145 to "
             "167 Arcane damage. Also causes 26 Arcane damage to all other enemies within 5 yards of the enemy target. "
