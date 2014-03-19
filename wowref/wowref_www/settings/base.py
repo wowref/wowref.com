@@ -47,6 +47,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [BASE.child('static')]
+
+ICONS_URL = 'http://cdn.openwow.com/images/icons'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

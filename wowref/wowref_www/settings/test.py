@@ -10,3 +10,5 @@ DATABASES = {
 }
 
 DATABASE_ROUTERS = []
+
+TEST_RUNNER = 'wotlk.runner.ManagedModelRunner'

@@ -1,0 +1,54 @@
+@import "compass/css3";
+@import "compass/typography";
+@import "compass/utilities";
+
+$dark-grey: #707070;
+$light-grey: #B0B0B0;
+$black-grey: #272727;
+
+$dark-green: #1F4C3C;
+$light-green: #3AC08E;
+
+$quality-poor:      #9D9D9D !important; // 0
+$quality-common:    #FFFFFF !important; // 1
+$quality-uncommon:  #1EFF00 !important; // 2
+$quality-rare:      #0070DD !important; // 3
+$quality-epic:      #A335EE !important; // 4
+$quality-legendary: #FF8000 !important; // 5
+$quality-artifact:  #E5CC80 !important; // 6
+$quality-BoA:       #E5CC80 !important; // 7
+
+$class-warrior:     #C6986D !important;  // 1
+$class-paladin:     #F48CBA !important;  // 2
+$class-hunter:      #AAD372 !important;  // 3
+$class-rogue:       #FFF468 !important;  // 4
+$class-priest:      #FFFFFF !important;  // 5
+$class-deathknight: #C41E3B !important;  // 6
+$class-shaman:      #23599F !important;  // 7
+$class-mage:        #68CCEF !important;  // 8
+$class-warlock:     #9382C9 !important;  // 9
+$class-druid:       #FF7C0A !important;  // 11
+
+@mixin almost-unstyled-link {
+    @include unstyled-link();
+    cursor: pointer;
+}
+
+@mixin cfx() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.cfx {
+    @include cfx();
+}
+
+.pull-right {
+    float: right;
+}

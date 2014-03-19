@@ -1,0 +1,171 @@
+@import "../init";
+
+.qt-wow {
+    border: 1px solid #353837;
+    color: #fff;
+    background-color: rgba(15, 15, 15, 0.9);
+    padding: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: #000 0 0 15px;
+    -webkit-box-shadow: #000 0 0 15px;
+    box-shadow: #000 0 0 15px;
+    font-size: 12px;
+    max-width: 400px;
+
+    h3 {
+        font-size: 16px;
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 5px;
+    }
+
+    .frame-56 {
+        position: absolute;
+        left: -75px;
+        top: -5px;
+    }
+
+    .item-specs {
+        margin-bottom: 10px;
+        list-style: none;
+        padding: 0;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+
+        li {
+            margin: 1px 1px;
+            line-height: 1.2em;
+        }
+
+        .indent {
+            padding-left: 10px;
+        }
+
+        .indent-top {
+            padding-top: 10px;
+        }
+    }
+
+    .color-tooltip-green {
+        color: #0f0 !important;
+    }
+
+    .color-tooltip-yellow {
+        color: #FFD100 !important
+    }
+
+    .color-tooltip-grey {
+        color: #9D9D9D !important;
+    }
+
+    .socket-no-gem {
+        color: #9D9D9D !important;
+    }
+
+    .icon-socket {
+        float: left;
+        margin-right: 4px;
+        display: block;
+        width: 15px;
+        height: 15px;
+        position: relative;
+
+        .frame {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 15px;
+            width: 15px;
+            background: image-url('icons/sockets.png');
+        }
+
+        .empty {
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 13px;
+            height: 13px;
+        }
+
+        &.socket-1 {
+            .empty {
+                background: #29292A;
+            }
+            .frame {
+                background-position: -45px 0;
+            }
+        }
+
+        &.socket-2 {
+            .empty {
+                background: #301010;
+            }
+        }
+
+        &.socket-4 {
+            .empty {
+                background: #403010;
+            }
+            .frame {
+                background-position: -15px 0;
+            }
+        }
+        &.socket-8 {
+            .empty {
+                background: #102040;
+            }
+            .frame {
+                background-position: -30px 0;
+            }
+        }
+
+        &.socket-14 {
+            .empty {
+                background: #29292A;
+            }
+            .frame {
+                background-position: -45px 0;
+            }
+        }
+    }
+
+    .gem {
+        display: block;
+        width: 15px;
+        height: 15px;
+
+        img {
+            width: 13px;
+            height: 13px;
+            padding: 1px 0 0 1px;
+        }
+    }
+}
+
+.icon-frame {
+    display: inline-block;
+    overflow: hidden;
+    padding: 1px;
+    background-color: #000;
+    background-position: 1px 1px;
+    background-repeat: no-repeat;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #434445;
+    border-bottom-color: #2f3032;
+    border-top-color: #b1b2b4;
+
+    .frame-56 {
+        height: 56px;
+        width: 56px;
+    }
+}
+
+.qtip-content {
+    overflow: visible !important;
+}

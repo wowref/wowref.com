@@ -1,0 +1,164 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'stylesheets/core/core.css' %}">
+
+<div class="qt-wow">
+<div class="ui-tooltip-content">
+    <img class="icon-frame frame-56" src="{{ item.icon_urls.large }}">
+
+    <h3 class="q{{ item.quality }}">{{ item.name }}</h3>
+
+    <ul class="item-specs" style="margin: 0">
+
+        {% if item.item_level %}
+            <li class="color-tooltip-yellow">Item Level {{ item.item_level }}</li>
+        {% endif %}
+
+        {% if item.bonding %}
+            <li>{{ item.bonding }}</li>
+        {% endif %}
+
+        {% if item.sub_class_name or item.inv_type_name %}
+            <li>
+            <span class="pull-right">{{ item.sub_class_name }}</span>
+            {% if item.inv_type_name %}
+                {{ item.inv_type_name }}
+            {% endif %}
+            </li>
+        {% endif %}
+
+        {% if item.armor %}
+            <li>{{ item.armor }} Armor</li>
+        {% endif %}
+
+        {% if item.min_damage %}
+            <li>
+            {{ item.min_damage}} - {{ item.max_damage }} Damage
+            <span class="pull-right">Speed {{ item.speed }}</span>
+            </li>
+        {% endif %}
+
+        {% if item.dps %}
+            <li>({{ item.dps }} damage per second)</li>
+        {% endif %}
+
+        {% for stat in item.primary_stats %}
+            <li> {{ stat }}</li>
+        {% endfor %}
+
+
+        {% if item.arcane_res %}
+            <li>+{{ item.arcane_res }} Arcane Resistance</li>
+        {% endif %}
+
+        {% if item.fire_res %}
+            <li>+{{ item.fire_res }} Fire Resistance</li>
+        {% endif %}
+
+        {% if item.frost_res %}
+            <li>+{{ item.frost_res }} Frost Resistance</li>
+        {% endif %}
+
+        {% if item.nature_res %}
+            <li>+{{ item.nature_res }} Nature Resistance</li>
+        {% endif %}
+
+        {% if item.shadow_res %}
+            <li>+{{ item.shadow_res }} Shadow Resistance</li>
+        {% endif %}
+
+        {% for stat in item.secondary_stats %}
+            <li class="color-tooltip-green">Equip: {{ stat }}</li>
+        {% endfor %}
+
+        {% for spell in item.spells %}
+            <li class="color-tooltip-green">
+            {{ spell.trigger }}: {{ spell.description }}
+            </li>
+        {% endfor %}
+
+        {% if item.sockets or item.description or item.enchant %}
+            <ul class="item-specs">
+                {% if item.enchant %}
+                    <li class="color-tooltip-green">Enchanted: {{ item.enchant }}</li>
+                {% endif %}
+
+                {% for socket in item.sockets %}
+                    {% if socket and not socket.gem %}
+                        <li class="color-tooltip-grey">
+                        <span class="icon-socket socket-{{socket.color_id}}">
+                            <span class="empty"></span>
+                            <span class="frame"></span>
+                        </span>
+                        {{ socket.name }}
+                        <span class="cfx"></span>
+                        </li>
+
+                    {% elif socket and socket.gem %}
+                        <li>
+                        <span class="icon-socket socket-{{socket.color_id}}">
+                            <span class="gem">
+                                <img src="{{ socket.gem.icon_urls.small }}" width="13px" height="13px">
+                                <span class="frame"></span>
+                            </span>
+                        </span>
+                        {{ socket.gem.description }}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if item.socket_bonus %}
+                    {% if item.socket_bonus.active %}
+                        <li class="color-tooltip-green">
+                        Socket Bonus: {{ item.socket_bonus.description }}
+                        </li>
+                    {% else %}
+                        <li class="color-tooltip-grey">
+                        Socket Bonus: {{ item.socket_bonus.description }}
+                        </li>
+                    {% endif %}
+                {% endif %}
+
+                {% if item.description %}
+                    <li class="color-tooltip-yellow">"{{ item.description }}"</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+
+        {% if item.item_set %}
+            <ul class="item-specs">
+                <li class="color-tooltip-yellow">
+                {{ item.item_set.name }}
+                ({{ item.item_set.matched }}/{{ item.item_set.items|length }})
+                </li>
+                {% for item_ in item.item_set.items %}
+                    <li class="indent color-tooltip-grey">{{ item_.name }}</li>
+                {% endfor %}
+
+                <li class="indent-top"></li>
+
+                {% for bonus in item.item_set.bonuses %}
+                    <li class="color-tooltip-grey">
+                    ({{ bonus.requirement }}) Set: {{ bonus.description }}
+                    </li>
+                {% endfor %}
+
+            </ul>
+        {% endif %}
+
+        <ul class="item-specs">
+            {% if item.required_classes and item.required_classes|length != 10 %}
+                Classes:
+                {% for class in item.required_classes %}
+                    <span class="c{{ class.class_id }}">{{ class.class_name }}</span>
+                {% endfor %}
+            {% endif %}
+
+            {% if item.required_level %}
+                <li>Requires Level {{ item.required_level }}</li>
+            {% endif %}
+        </ul>
+
+
+    </ul>
+</div>
+</div>
