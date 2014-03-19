@@ -9,7 +9,7 @@ UNICODE_BLANK = ''
 
 
 class DBCRecord(object):
-    "A simple object to convert a dict to an object"
+    """A simple object to convert a dict to an object."""
     def __init__(self, d=None):
         self.data = d
 
@@ -28,9 +28,7 @@ class DBCRecord(object):
 
 
 class DBCFile(object):
-    """
-    Base representation of a DBC file.
-    """
+    """Base representation of a DBC file."""
 
     header_struct = Struct('4s4i')
 
@@ -41,7 +39,7 @@ class DBCFile(object):
         self.__create_struct()
 
     def __iter__(self):
-        "Iterated based approach to the dbc reading"
+        """Iterated based approach to the dbc reading."""
         if not os.path.exists(self.filename):
             raise Exception("File '%s' not found" % (self.filename,))
 
@@ -85,7 +83,7 @@ class DBCFile(object):
             f.close()
 
     def __create_struct(self):
-        "Creates a Struct from the Skeleton"
+        """Creates a Struct from the Skeleton."""
         if self.skeleton:
             s = ['<']
             for item in self.skeleton:
@@ -98,7 +96,7 @@ class DBCFile(object):
             self.struct = None
 
     def __process_record(self, data):
-        "Processes a record (row of data)"
+        """Processes a record (row of data)."""
         output = {}
         data_iter = iter(data)
         for field in self.skeleton:

@@ -1,4 +1,3 @@
-from __future__ import with_statement, absolute_import, division
 from collections import namedtuple
 import inspect
 import operator
@@ -25,9 +24,7 @@ __all__ = [
 
 
 def load_dbc_data():
-    """
-        Loads the DBC data into memory.
-    """
+    """Loads the DBC data into memory."""
     with LoadTimer('data', prefix='DBC', newLine=True):
         for cls in sorted(__all__):
             cls = globals()[cls]
@@ -41,23 +38,23 @@ def get_dbc_path(dbc_name):
 
 def date_diff(secs, n=True, short=False):
     """
-        Converts seconds to x hour(s) x minute(s) (and) x second(s)
+    Converts seconds to x hour(s) x minute(s) (and) x second(s)
 
-        Args:
-            secs: The seconds that you want to convert
-            n: Whether or not you want the word "and" inserted in the correct
-               correct places in the string.
-            short: If this is True then the string will only contain the first
-                   letter of each time type, and no ands.
+    Args:
+        secs: The seconds that you want to convert
+        n: Whether or not you want the word "and" inserted in the correct
+            correct places in the string.
+        short: If this is True then the string will only contain the first
+                letter of each time type, and no ands.
 
-        >>> date_diff(5)
-        '5 seconds'
-        >>> date_diff(61)
-        '1 minute and 1 second'
-        >>> date_diff(3615, n=False)
-        '1 hour 15 seconds'
-        >>> date_diff(3615, short=True)
-        '1h 15s'
+    >>> date_diff(5)
+    '5 seconds'
+    >>> date_diff(61)
+    '1 minute and 1 second'
+    >>> date_diff(3615, n=False)
+    '1 hour 15 seconds'
+    >>> date_diff(3615, short=True)
+    '1h 15s'
 
     """
     time_order = (
@@ -93,9 +90,11 @@ def date_diff(secs, n=True, short=False):
 
 
 class _DBCDataLoadable(object):
-    """
-        DBC data storage should implement this class, it prevents it from being initialized, and
-        ensures it has a loadData class method.
+    """Base class for DBC data storage subclasses.
+
+    DBC data storage should implement this class, it prevents it from being,
+    initialized, and ensures it has a loadData class method.
+
     """
 
     def __init__(self):
@@ -103,9 +102,7 @@ class _DBCDataLoadable(object):
 
     @classmethod
     def load_data(cls):
-        """
-            Load Data into this class structure...
-        """
+        """Load Data into this class structure..."""
         raise NotImplementedError()
 
 
@@ -129,10 +126,15 @@ class CharTitle(_DBCDataLoadable):
 
     @classmethod
     def get_name(cls, title_id, gender_id):
-        """
-        Get the name of the title_id for the given gender_id.
-        This returns a string with an unused string formatter in it where the
-        character's name will go.
+        """The title name that corresponds to the title id.
+
+        The title may change, but often does not, depending on which gender it
+        is for.
+
+        Returns:
+            str: The title with an unused string formatter.
+
+            The string formatter is inserted where the player's name should go.
 
         Example:
             Note: the title_id in this example is not accurate.
@@ -490,9 +492,7 @@ class Spell(_DBCDataLoadable):
 
     @classmethod
     def get_formatted_description(cls, id):
-        """
-            Format the description, pulling in data from all over.
-        """
+        """Format the description, pulling in data from all over."""
 
         # Description Variables
         description = cls.get_description(id)
