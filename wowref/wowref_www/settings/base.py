@@ -16,6 +16,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
 )
 WOWREF_APPS = (
+    'wotlk.dbc',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + WOWREF_APPS
@@ -49,5 +50,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'sqlite.db'
+    },
+    'wotlk': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wotlk',
+        'USER': 'ryan',
+        'PASSWORD': '',
+        'HOST': 'localhost'
     }
 }
