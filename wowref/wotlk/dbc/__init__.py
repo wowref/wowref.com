@@ -1,4 +1,5 @@
 from collections import namedtuple
+import concurrent.futures
 import inspect
 import operator
 import os
@@ -10,7 +11,7 @@ from .lib import (
     SpellDBC, SpellCastTimesDBC, SpellDurationDBC, SpellIconDBC, SpellRadiusDBC,
     SpellItemEnchantmentDBC, SpellItemEnchantmentConditionDBC
 )
-from .timers import LoadTimerWithSuccess, LoadedRecords, LoadTimer
+from .timers import LoadTimerWithSuccess, LoadedRecords
 
 import pickle
 
@@ -25,11 +26,11 @@ __all__ = [
 
 def load_dbc_data():
     """Loads the DBC data into memory."""
-    with LoadTimer('data', prefix='DBC', newLine=True):
+    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
         for cls in sorted(__all__):
             cls = globals()[cls]
             if issubclass(cls, _DBCDataLoadable):
-                cls.load_data()
+                executor.submit(cls.load_data)
 
 
 def get_dbc_path(dbc_name):
@@ -734,5 +735,3 @@ class Zone(_DBCDataLoadable):
             return cls.get_name(zone_id)
         else:
             return "%s, %s" % (cls.get_name(parent), cls.get_name(zone_id))
-
-load_dbc_data()

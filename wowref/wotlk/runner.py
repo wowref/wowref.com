@@ -1,5 +1,7 @@
 from django.test.runner import DiscoverRunner
 
+from wotlk.dbc import load_dbc_data
+
 
 class ManagedModelRunner(DiscoverRunner):
     """
@@ -7,6 +9,8 @@ class ManagedModelRunner(DiscoverRunner):
     project managed for the duration of the test run, so that one doesn't need
     to execute the SQL manually to create them.
     """
+
+    load_dbc_data()
 
     def setup_test_environment(self, *args, **kwargs):
         from django.db.models.loading import get_models
